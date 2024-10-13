@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="pt-BR"> 
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pokedevs - Semana do Zero ao Programador Contratado</title>
+
+    <link rel="stylesheet" href="./src/css/reset.css">
+    <link rel="stylesheet" href="./src/css/estilos.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+    
+    <style>
+      /* Estilização básica para os botões e a navegação lateral */
+      .button-container {
+          position: fixed;
+          left: 0;
+          top: 50%;
+          transform: translateY(-50%);
+          display: flex;
+          flex-direction: column;
+      }
+      
+      .button-container button {
+          padding: 10px 20px;
+          margin: 5px 0;
+          border: none;
+          background-color: #4CAF50;
+          color: white;
+          cursor: pointer;
+          width: 150px;
+          text-align: left;
+      }
+      
+      .button-container button:hover {
+          background-color: #45a049;
+      }
+
+      .listagem ul {
+          padding-left: 0;
+      }
+      
+      .listagem li {
+          list-style: none;
+      }
+    </style>
+  </head>
+
+  <body>
+    <main>
+      <div class="pokedevs">
+
+        <!-- Botões à esquerda -->
+        <div class="button-container">
+          <button id="btn-todos">Todos</button>
+          <button id="btn-impostores">Impostores</button>
+          <button id="btn-tripulantes">Tripulantes</button>
+          <button id="btn-neutros">Neutros</button>
+        </div>
+
+        <div class="cartoes-pokedev">
+          <!-- Seus cartões de Pokedevs permanecem os mesmos -->
+          <!-- Exemplo de um deles -->
+          <div class="cartao-pokedev tipo-eletrico aberto" id="cartao-devchu">
+            <div class="cartao-topo">
+              <div class="detalhes">
+                <h2 class="nome">Devchu</h2>
+                <span>#001</span>
+              </div>
+
+              <span class="tipo">elétrico</span>
+
+              <div class="cartao-imagem">
+                <img src="./src/imagens/devchu.png" alt="Devchu" />
+              </div>
+            </div>
+
+            <div class="cartao-informacoes">
+              <div class="descricao">
+                <h3>Descrição</h3>
+
+                <p>
+                  Quando se depara com um erro no código, fica bastante irritado.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Outros cartões aqui... -->
+        </div>
+
+        <!-- Conteúdo dinâmico à direita -->
+        <nav class="listagem" id="listagem-pokedevs">
+          <ul>
+            <li class="pokedev ativo" id="devchu">
+              <img src="./src/imagens/devchu.png" alt="Devchu" />
+              <span>Devchu</span>
+            </li>
+            <li class="pokedev" id="scriptle">
+              <img src="./src/imagens/scriptle.png" alt="Scriptle" />
+              <span>Scriptle</span>
+            </li>
+            <!-- Outros Pokedevs... -->
+          </ul>
+        </nav>
+      </div>
+    </main>
+
+    <!-- Script para trocar conteúdo dinâmico -->
+    <script>
+      function changeContent(content) {
+          const listagem = document.getElementById("listagem-pokedevs");
+          listagem.innerHTML = ''; // Limpa a lista atual
+          
+          // Adiciona novo conteúdo baseado no botão clicado
+          content.forEach(item => {
+              const li = document.createElement("li");
+              li.classList.add('pokedev');
+              li.innerHTML = `<img src="${item.img}" alt="${item.name}" /><span>${item.name}</span>`;
+              listagem.appendChild(li);
+          });
+      }
+
+      // Eventos dos botões
+      document.getElementById("btn-todos").addEventListener("click", function() {
+          changeContent([
+              {name: "Devchu", img: "./src/imagens/devchu.png"},
+              {name: "Scriptle", img: "./src/imagens/scriptle.png"},
+              {name: "Codevee", img: "./src/imagens/codevee.png"}
+          ]);
+      });
+
+      document.getElementById("btn-impostores").addEventListener("click", function() {
+          changeContent([
+              {name: "Charmandev", img: "./src/imagens/charmandev.png"},
+              {name: "Psycoder", img: "./src/imagens/psycoder.png"}
+          ]);
+      });
+
+      document.getElementById("btn-tripulantes").addEventListener("click", function() {
+          changeContent([
+              {name: "Scriptle", img: "./src/imagens/scriptle.png"},
+              {name: "Codevee", img: "./src/imagens/codevee.png"}
+          ]);
+      });
+
+      document.getElementById("btn-neutros").addEventListener("click", function() {
+          changeContent([
+              {name: "Devlypuff", img: "./src/imagens/devlypuff.png"}
+          ]);
+      });
+    </script>
+  </body>
+</html>
